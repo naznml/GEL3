@@ -1,1 +1,1141 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit 3 — Қазақстан және ағылшын тілінде сөйлейтін елдер</title>
 
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #dbeafe;
+      --accent: #14b8a6;
+      --accent-soft: #ccfbf1;
+      --border: #e2e8f0;
+      --danger: #ef4444;
+      --danger-soft: #fee2e2;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, #dbeafe 0, transparent 34%),
+        radial-gradient(circle at top right, #ccfbf1 0, transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #14b8a6);
+      color: #fff;
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(28px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -1.2px;
+    }
+
+    .hero p {
+      margin: 16px 0 0;
+      max-width: 800px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 17px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .lang-btn.active {
+      background: #fff;
+      color: #1d4ed8;
+      border-color: #fff;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 14px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .menu a:hover {
+      transform: translateY(-2px);
+      border-color: #93c5fd;
+    }
+
+    .menu span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    .unit-block,
+    .subunit-block,
+    .listening-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .unit-block {
+      padding: 26px;
+    }
+
+    .unit-header h2 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: 1.12;
+      letter-spacing: -0.7px;
+    }
+
+    .unit-header p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 820px;
+    }
+
+    .subunit-block {
+      padding: 22px;
+    }
+
+    .subunit-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .big-number {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .subunit-title-en {
+      font-size: 25px;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .subunit-title-local {
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .listening-card {
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    .listening-card + .listening-card {
+      margin-top: 18px;
+    }
+
+    .listening-title {
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12.5px;
+      font-weight: 800;
+    }
+
+    .audio-box {
+      background: linear-gradient(135deg, #eff6ff, #f0fdfa);
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    audio {
+      width: 100%;
+      display: block;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 16px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .instruction {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .question {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+
+    .question-title {
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid #edf2f7;
+      background: #f8fafc;
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .option input {
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .option.correct {
+      background: var(--success-soft);
+      border-color: #86efac;
+    }
+
+    .option.wrong {
+      background: var(--danger-soft);
+      border-color: #fecaca;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .check-btn {
+      border: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 900;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+    }
+
+    .result-box {
+      display: none;
+      background: var(--primary-soft);
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 900;
+    }
+
+    .answer-panel {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: #fbfcff;
+    }
+
+    .answer-panel h4 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .answer-item {
+      border-top: 1px dashed #dbe3ef;
+      padding: 12px 0;
+    }
+
+    .answer-item:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .answer-item strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .answer-item small {
+      display: block;
+      color: var(--muted);
+      margin-top: 2px;
+      font-weight: 700;
+    }
+
+    .answer-item p {
+      margin: 6px 0 0;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .text-box {
+      white-space: pre-wrap;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 20px;
+      padding: 18px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .compact-translation {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: #fbfcff;
+    }
+
+    .compact-translation p {
+      margin: 0 0 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .compact-translation p:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .compact-translation strong {
+      display: block;
+      color: var(--text);
+      font-size: 14.5px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .compact-translation span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .vocab-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .vocab-list li {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+
+    .vocab-list strong {
+      color: var(--primary);
+    }
+
+    @media (max-width: 900px) {
+      .hero-top {
+        flex-direction: column;
+      }
+
+      .menu {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .subunit-header {
+        grid-template-columns: 1fr;
+      }
+
+      .big-number {
+        width: 62px;
+        height: 62px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 18px, 1180px);
+        padding-top: 12px;
+      }
+
+      .hero {
+        padding: 22px;
+        border-radius: 24px;
+      }
+
+      .menu {
+        grid-template-columns: 1fr;
+      }
+
+      .unit-block,
+      .subunit-block,
+      .listening-card {
+        border-radius: 20px;
+      }
+
+      .subunit-block,
+      .listening-card,
+      .unit-block {
+        padding: 15px;
+      }
+
+      .listening-title {
+        font-size: 18px;
+      }
+
+      .subunit-title-en {
+        font-size: 20px;
+      }
+
+      .compact-translation {
+        padding: 13px;
+        border-radius: 16px;
+      }
+
+      .compact-translation p {
+        margin-bottom: 9px;
+        padding-bottom: 9px;
+      }
+
+      .compact-translation strong {
+        font-size: 13.5px;
+      }
+
+      .compact-translation span {
+        font-size: 12.7px;
+      }
+
+      .question {
+        padding: 12px;
+      }
+
+      .option {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="badge">General English Listening • Unit 3</div>
+          <h1>Қазақстан және ағылшын тілінде сөйлейтін елдер</h1>
+          <p
+            data-kk="Қазақстан, Ұлыбритания, Ирландия, АҚШ, Канада, Австралия және Жаңа Зеландия туралы тыңдалым тапсырмалары."
+            data-ru="Задания по аудированию о Казахстане, Великобритании, Ирландии, США, Канаде, Австралии и Новой Зеландии."
+          >
+            Қазақстан, Ұлыбритания, Ирландия, АҚШ, Канада, Австралия және Жаңа Зеландия туралы тыңдалым тапсырмалары.
+          </p>
+        </div>
+
+        <div class="lang-switch">
+          <button class="lang-btn active" type="button" data-lang="kk">KZ</button>
+          <button class="lang-btn" type="button" data-lang="ru">RU</button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="menu">
+      <a href="#subunit-3-1">
+        3.1 Geography
+        <span data-kk="География, ауа райы және климат" data-ru="География, погода и климат">География, ауа райы және климат</span>
+      </a>
+
+      <a href="#subunit-3-2">
+        3.2 History
+        <span data-kk="Тарих, астана, қалалар, саяси жүйе" data-ru="История, столица, города, политическая система">Тарих, астана, қалалар, саяси жүйе</span>
+      </a>
+
+      <a href="#subunit-3-3">
+        3.3 Traditions
+        <span data-kk="Ұлттық құндылықтар, мейрамдар, спорт" data-ru="Национальные ценности, праздники, спорт">Ұлттық құндылықтар, мейрамдар, спорт</span>
+      </a>
+
+      <a href="#subunit-3-4">
+        3.4 Culture
+        <span data-kk="Тіл, өнер, музыка, кино, әдебиет" data-ru="Язык, искусство, музыка, кино, литература">Тіл, өнер, музыка, кино, әдебиет</span>
+      </a>
+
+      <a href="#subunit-3-5">
+        3.5 Development
+        <span data-kk="Өнеркәсіп, сәулет және құрылыс" data-ru="Промышленность, архитектура и строительство">Өнеркәсіп, сәулет және құрылыс</span>
+      </a>
+    </nav>
+
+    <section class="unit-block" id="unit-3">
+      <div class="unit-header">
+        <div class="eyebrow">Unit 3</div>
+        <h2>Қазақстан және ағылшын тілінде сөйлейтін елдер</h2>
+        <p
+          data-kk="Бұл бөлім елдердің географиясын, климатын, тарихын, мәдениетін, өнерін, әдебиетін, дәстүрін және заманауи дамуын қамтиды."
+          data-ru="Этот раздел охватывает географию, климат, историю, культуру, искусство, литературу, традиции и современное развитие стран."
+        >
+          Бұл бөлім елдердің географиясын, климатын, тарихын, мәдениетін, өнерін, әдебиетін, дәстүрін және заманауи дамуын қамтиды.
+        </p>
+      </div>
+    </section>
+
+    <section class="subunit-block" id="subunit-3-1">
+      <div class="subunit-header">
+        <div class="big-number">3.1</div>
+
+        <div>
+          <div class="eyebrow">Sub-unit 3.1</div>
+          <div class="subunit-title-en">Geography, weather and climate</div>
+          <div
+            class="subunit-title-local"
+            data-kk="Географиялық орналасуы. Ауа райы және климаты"
+            data-ru="Географическое положение. Погода и климат"
+          >
+            Географиялық орналасуы. Ауа райы және климаты
+          </div>
+        </div>
+      </div>
+
+      <article class="listening-card" id="audio-1">
+        <div class="listening-title">Listening 3.1.1 — Weather in Canada</div>
+
+        <div class="chips">
+          <div class="chip">Topic: Weather / Canada / Climate</div>
+          <div class="chip">Type: Dialogue</div>
+        </div>
+
+        <div class="audio-box">
+          <audio controls preload="metadata">
+            <source src="Новая запись 26.m4a">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" type="button" onclick="openTab('audio1', 'test')">Test</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio1', 'transcript')">Transcript</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio1', 'translation')" data-kk="Аударма" data-ru="Перевод">Аударма</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio1', 'vocabulary')">Vocabulary</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="audio1" data-tab-name="test">
+          <div
+            class="instruction"
+            data-kk="Аудионы тыңдап, 8 сұраққа жауап беріңіз. Ауа райы, Канададағы қыс және кейіпкерлердің реакциясына назар аударыңыз."
+            data-ru="Прослушайте аудио и ответьте на 8 вопросов. Обратите внимание на погоду, зиму в Канаде и реакцию героев."
+          >
+            Аудионы тыңдап, 8 сұраққа жауап беріңіз. Ауа райы, Канададағы қыс және кейіпкерлердің реакциясына назар аударыңыз.
+          </div>
+
+          <div class="test-area" data-test="audio1">
+            <div class="question" data-correct="A">
+              <div class="question-title">1. What is the weather like at the beginning?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q1" value="A"> A. It is rainy</label>
+                <label class="option"><input type="radio" name="u3a1q1" value="B"> B. It is sunny</label>
+                <label class="option"><input type="radio" name="u3a1q1" value="C"> C. It is snowy</label>
+                <label class="option"><input type="radio" name="u3a1q1" value="D"> D. It is hot and dry</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="C">
+              <div class="question-title">2. Where did Bob live before?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q2" value="A"> A. In Ireland</label>
+                <label class="option"><input type="radio" name="u3a1q2" value="B"> B. In Australia</label>
+                <label class="option"><input type="radio" name="u3a1q2" value="C"> C. In Canada</label>
+                <label class="option"><input type="radio" name="u3a1q2" value="D"> D. In New Zealand</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="D">
+              <div class="question-title">3. What was the winter like in Canada?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q3" value="A"> A. Warm and sunny</label>
+                <label class="option"><input type="radio" name="u3a1q3" value="B"> B. Rainy and mild</label>
+                <label class="option"><input type="radio" name="u3a1q3" value="C"> C. Dry and calm</label>
+                <label class="option"><input type="radio" name="u3a1q3" value="D"> D. Cold and windy</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="B">
+              <div class="question-title">4. What happened to Bob on the ice?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q4" value="A"> A. He lost his umbrella</label>
+                <label class="option"><input type="radio" name="u3a1q4" value="B"> B. He fell and broke his leg</label>
+                <label class="option"><input type="radio" name="u3a1q4" value="C"> C. He met Noelia</label>
+                <label class="option"><input type="radio" name="u3a1q4" value="D"> D. He moved to another country</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="A">
+              <div class="question-title">5. How many places did Bob break his leg in?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q5" value="A"> A. Three</label>
+                <label class="option"><input type="radio" name="u3a1q5" value="B"> B. Two</label>
+                <label class="option"><input type="radio" name="u3a1q5" value="C"> C. Four</label>
+                <label class="option"><input type="radio" name="u3a1q5" value="D"> D. Five</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="D">
+              <div class="question-title">6. How does Noelia react to Bob’s story?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q6" value="A"> A. She laughs and changes the topic</label>
+                <label class="option"><input type="radio" name="u3a1q6" value="B"> B. She says Canada is always warm</label>
+                <label class="option"><input type="radio" name="u3a1q6" value="C"> C. She does not believe he lived abroad</label>
+                <label class="option"><input type="radio" name="u3a1q6" value="D"> D. She shows surprise and sympathy</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="C">
+              <div class="question-title">7. Why is Bob’s story not all bad?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q7" value="A"> A. He learned to enjoy rainy weather</label>
+                <label class="option"><input type="radio" name="u3a1q7" value="B"> B. He moved to a warmer country</label>
+                <label class="option"><input type="radio" name="u3a1q7" value="C"> C. He met his wife in hospital</label>
+                <label class="option"><input type="radio" name="u3a1q7" value="D"> D. His leg became better immediately</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="B">
+              <div class="question-title">8. Who was Bob’s future wife?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a1q8" value="A"> A. A weather reporter</label>
+                <label class="option"><input type="radio" name="u3a1q8" value="B"> B. The doctor who looked at his leg</label>
+                <label class="option"><input type="radio" name="u3a1q8" value="C"> C. A woman who lived next door</label>
+                <label class="option"><input type="radio" name="u3a1q8" value="D"> D. Noelia’s friend from Canada</label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="check-btn" type="button" onclick="checkTest('audio1')" data-kk="Show result" data-ru="Show result">Show result</button>
+              <div class="result-box" id="result-audio1"></div>
+            </div>
+          </div>
+
+          <div class="answer-panel" id="answers-audio1">
+            <h4 data-kk="Нәтиже және жауаптар" data-ru="Результат и ответы">Нәтиже және жауаптар</h4>
+
+            <div class="answer-item">
+              <strong>1. What is the weather like at the beginning?</strong>
+              <small data-kk="Басында ауа райы қандай?" data-ru="Какая погода в начале?">Басында ауа райы қандай?</small>
+              <p><b>Correct answer: A</b></p>
+              <p><b>Answer:</b> It is rainy.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Жаңбыр жауып тұр." data-ru="Идёт дождь.">Жаңбыр жауып тұр.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Ноэлия әңгіменің басында бүгін жаңбырлы екенін айтады." data-ru="В начале разговора Ноэлия говорит, что сегодня дождливо.">Ноэлия әңгіменің басында бүгін жаңбырлы екенін айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>2. Where did Bob live before?</strong>
+              <small data-kk="Боб бұрын қай жерде тұрған?" data-ru="Где Боб жил раньше?">Боб бұрын қай жерде тұрған?</small>
+              <p><b>Correct answer: C</b></p>
+              <p><b>Answer:</b> In Canada.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Канадада." data-ru="В Канаде.">Канадада.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб бұрын Канадада тұрғанын айтады." data-ru="Боб говорит, что раньше жил в Канаде.">Боб бұрын Канадада тұрғанын айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>3. What was the winter like in Canada?</strong>
+              <small data-kk="Канададағы қыс қандай болған?" data-ru="Какой была зима в Канаде?">Канададағы қыс қандай болған?</small>
+              <p><b>Correct answer: D</b></p>
+              <p><b>Answer:</b> Cold and windy.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Суық және желді." data-ru="Холодная и ветреная.">Суық және желді.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб бір қыста ауа райы өте суық әрі желді болғанын айтады." data-ru="Боб говорит, что однажды зимой погода была очень холодной и ветреной.">Боб бір қыста ауа райы өте суық әрі желді болғанын айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>4. What happened to Bob on the ice?</strong>
+              <small data-kk="Мұзда Бобқа не болды?" data-ru="Что случилось с Бобом на льду?">Мұзда Бобқа не болды?</small>
+              <p><b>Correct answer: B</b></p>
+              <p><b>Answer:</b> He fell and broke his leg.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Ол құлап, аяғын сындырды." data-ru="Он упал и сломал ногу.">Ол құлап, аяғын сындырды.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб мұзда құлап, аяғын сындырғанын айтады." data-ru="Боб говорит, что упал на льду и сломал ногу.">Боб мұзда құлап, аяғын сындырғанын айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>5. How many places did Bob break his leg in?</strong>
+              <small data-kk="Боб аяғын неше жерден сындырды?" data-ru="В скольких местах Боб сломал ногу?">Боб аяғын неше жерден сындырды?</small>
+              <p><b>Correct answer: A</b></p>
+              <p><b>Answer:</b> Three.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Үш жерден." data-ru="В трёх местах.">Үш жерден.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб аяғын үш жерден сындырғанын нақты айтады." data-ru="Боб прямо говорит, что сломал ногу в трёх местах.">Боб аяғын үш жерден сындырғанын нақты айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>6. How does Noelia react to Bob’s story?</strong>
+              <small data-kk="Ноэлия Бобтың әңгімесіне қалай жауап береді?" data-ru="Как Ноэлия реагирует на рассказ Боба?">Ноэлия Бобтың әңгімесіне қалай жауап береді?</small>
+              <p><b>Correct answer: D</b></p>
+              <p><b>Answer:</b> She shows surprise and sympathy.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Ол таңғалып, аяушылық білдіреді." data-ru="Она удивляется и выражает сочувствие.">Ол таңғалып, аяушылық білдіреді.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Ноэлия оның оқиғасына таңғалып, кейін оған жанашырлық білдіреді." data-ru="Ноэлия удивляется его истории, а затем выражает сочувствие.">Ноэлия оның оқиғасына таңғалып, кейін оған жанашырлық білдіреді.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>7. Why is Bob’s story not all bad?</strong>
+              <small data-kk="Неге Бобтың оқиғасы толықтай жаман емес?" data-ru="Почему история Боба не совсем плохая?">Неге Бобтың оқиғасы толықтай жаман емес?</small>
+              <p><b>Correct answer: C</b></p>
+              <p><b>Answer:</b> He met his wife in hospital.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Ол әйелін ауруханада кездестірді." data-ru="Он встретил свою жену в больнице.">Ол әйелін ауруханада кездестірді.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб оқиғаның жақсы жағы ретінде болашақ әйелін ауруханада кездестіргенін айтады." data-ru="Боб говорит, что хорошая сторона этой истории в том, что он встретил будущую жену в больнице.">Боб оқиғаның жақсы жағы ретінде болашақ әйелін ауруханада кездестіргенін айтады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>8. Who was Bob’s future wife?</strong>
+              <small data-kk="Бобтың болашақ әйелі кім болған?" data-ru="Кем была будущая жена Боба?">Бобтың болашақ әйелі кім болған?</small>
+              <p><b>Correct answer: B</b></p>
+              <p><b>Answer:</b> The doctor who looked at his leg.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Оның аяғын қараған дәрігер." data-ru="Врач, которая осматривала его ногу.">Оның аяғын қараған дәрігер.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Боб әйелінің ауруханада оның аяғын қараған дәрігер болғанын айтады." data-ru="Боб говорит, что его жена была врачом, которая осматривала его ногу.">Боб әйелінің ауруханада оның аяғын қараған дәрігер болғанын айтады.</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio1" data-tab-name="transcript">
+          <div class="text-box">Noelia: Morning, Bob.
+Bob: Oh, good morning.
+Noelia: It's so rainy today. The weather in this country is horrible!
+Bob: Yes … yes … The weather was even worse when I lived in Canada.
+Noelia: Oh, I didn't know that you lived in Canada, Bob. How cool!
+Bob: One winter it was so cold and windy that I fell on the ice and broke my leg in three places.
+Noelia: Oh no! You're joking!
+Bob: I wish I was, Noelia, I wish I was. I was never the same after that winter. And my leg is still bad today.
+Noelia: Really? I'm sorry to hear that. Poor you.
+Bob: But it's not all bad. I met my wife in the hospital. She was the doctor who looked at my leg!</div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio1" data-tab-name="translation">
+          <div class="compact-translation">
+            <p><strong>Noelia: Morning, Bob.</strong><span data-kk="Ноэлия: Қайырлы таң, Боб." data-ru="Ноэлия: Доброе утро, Боб.">Ноэлия: Қайырлы таң, Боб.</span></p>
+            <p><strong>Bob: Oh, good morning.</strong><span data-kk="Боб: О, қайырлы таң." data-ru="Боб: О, доброе утро.">Боб: О, қайырлы таң.</span></p>
+            <p><strong>Noelia: It's so rainy today. The weather in this country is horrible!</strong><span data-kk="Ноэлия: Бүгін қатты жаңбырлы. Бұл елдің ауа райы өте жаман!" data-ru="Ноэлия: Сегодня так дождливо. Погода в этой стране ужасная!">Ноэлия: Бүгін қатты жаңбырлы. Бұл елдің ауа райы өте жаман!</span></p>
+            <p><strong>Bob: The weather was even worse when I lived in Canada.</strong><span data-kk="Боб: Мен Канадада тұрған кезде ауа райы бұдан да жаман болатын." data-ru="Боб: Когда я жил в Канаде, погода была ещё хуже.">Боб: Мен Канадада тұрған кезде ауа райы бұдан да жаман болатын.</span></p>
+            <p><strong>Noelia: I didn't know that you lived in Canada, Bob. How cool!</strong><span data-kk="Ноэлия: Сенің Канадада тұрғаныңды білмеппін, Боб. Қандай қызық!" data-ru="Ноэлия: Я не знала, что ты жил в Канаде, Боб. Как здорово!">Ноэлия: Сенің Канадада тұрғаныңды білмеппін, Боб. Қандай қызық!</span></p>
+            <p><strong>Bob: One winter it was so cold and windy that I fell on the ice and broke my leg in three places.</strong><span data-kk="Боб: Бір қыста сондай суық әрі желді болды, мен мұзда құлап, аяғымды үш жерден сындырдым." data-ru="Боб: Однажды зимой было так холодно и ветрено, что я упал на льду и сломал ногу в трёх местах.">Боб: Бір қыста сондай суық әрі желді болды, мен мұзда құлап, аяғымды үш жерден сындырдым.</span></p>
+            <p><strong>Noelia: Oh no! You're joking!</strong><span data-kk="Ноэлия: Ой, жоқ! Қалжыңдап тұрсың ба!" data-ru="Ноэлия: О нет! Ты шутишь!">Ноэлия: Ой, жоқ! Қалжыңдап тұрсың ба!</span></p>
+            <p><strong>Bob: I wish I was. I was never the same after that winter.</strong><span data-kk="Боб: Қалжың болса ғой. Сол қыстан кейін бұрынғыдай болмадым." data-ru="Боб: Хотел бы я, чтобы это была шутка. После той зимы я уже не был прежним.">Боб: Қалжың болса ғой. Сол қыстан кейін бұрынғыдай болмадым.</span></p>
+            <p><strong>Bob: And my leg is still bad today.</strong><span data-kk="Боб: Аяғым әлі күнге дейін ауырады." data-ru="Боб: И моя нога до сих пор болит.">Боб: Аяғым әлі күнге дейін ауырады.</span></p>
+            <p><strong>Noelia: Really? I'm sorry to hear that. Poor you.</strong><span data-kk="Ноэлия: Рас па? Оны естігеніме өкінішті. Байғұс-ай." data-ru="Ноэлия: Правда? Мне жаль это слышать. Бедный ты.">Ноэлия: Рас па? Оны естігеніме өкінішті. Байғұс-ай.</span></p>
+            <p><strong>Bob: But it's not all bad. I met my wife in the hospital.</strong><span data-kk="Боб: Бірақ бәрі жаман болған жоқ. Әйелімді ауруханада кездестірдім." data-ru="Боб: Но не всё было плохо. Я встретил свою жену в больнице.">Боб: Бірақ бәрі жаман болған жоқ. Әйелімді ауруханада кездестірдім.</span></p>
+            <p><strong>Bob: She was the doctor who looked at my leg!</strong><span data-kk="Боб: Ол менің аяғымды қараған дәрігер еді!" data-ru="Боб: Она была врачом, которая осматривала мою ногу!">Боб: Ол менің аяғымды қараған дәрігер еді!</span></p>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio1" data-tab-name="vocabulary">
+          <ul class="vocab-list">
+            <li><strong>rainy</strong> — <span data-kk="жаңбырлы" data-ru="дождливый">жаңбырлы</span></li>
+            <li><strong>weather</strong> — <span data-kk="ауа райы" data-ru="погода">ауа райы</span></li>
+            <li><strong>horrible</strong> — <span data-kk="өте жаман, қорқынышты" data-ru="ужасный">өте жаман, қорқынышты</span></li>
+            <li><strong>worse</strong> — <span data-kk="одан да жаман" data-ru="хуже">одан да жаман</span></li>
+            <li><strong>winter</strong> — <span data-kk="қыс" data-ru="зима">қыс</span></li>
+            <li><strong>cold and windy</strong> — <span data-kk="суық және желді" data-ru="холодный и ветреный">суық және желді</span></li>
+            <li><strong>ice</strong> — <span data-kk="мұз" data-ru="лёд">мұз</span></li>
+            <li><strong>to break a leg</strong> — <span data-kk="аяқты сындыру" data-ru="сломать ногу">аяқты сындыру</span></li>
+            <li><strong>hospital</strong> — <span data-kk="аурухана" data-ru="больница">аурухана</span></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="listening-card" id="audio-2">
+        <div class="listening-title">Listening 3.1.2 — Weather forecast</div>
+
+        <div class="chips">
+          <div class="chip">Topic: Weather / Forecast / Climate</div>
+          <div class="chip">Type: Weather report</div>
+        </div>
+
+        <div class="audio-box">
+          <audio controls preload="metadata">
+            <source src="Кл.m4a">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" type="button" onclick="openTab('audio2', 'test')">Test</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio2', 'transcript')">Transcript</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio2', 'translation')" data-kk="Аударма" data-ru="Перевод">Аударма</button>
+          <button class="tab-btn" type="button" onclick="openTab('audio2', 'vocabulary')">Vocabulary</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="audio2" data-tab-name="test">
+          <div
+            class="instruction"
+            data-kk="Аудионы тыңдап, 8 сұраққа жауап беріңіз. Елдің әр бөлігіндегі ауа райы мен температураға назар аударыңыз."
+            data-ru="Прослушайте аудио и ответьте на 8 вопросов. Обратите внимание на погоду и температуру в разных частях страны."
+          >
+            Аудионы тыңдап, 8 сұраққа жауап беріңіз. Елдің әр бөлігіндегі ауа райы мен температураға назар аударыңыз.
+          </div>
+
+          <div class="test-area" data-test="audio2">
+            <div class="question" data-correct="D">
+              <div class="question-title">1. What is the weather like in the north of the country?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q1" value="A"> A. Sunny and warm</label>
+                <label class="option"><input type="radio" name="u3a2q1" value="B"> B. Dry and cloudy</label>
+                <label class="option"><input type="radio" name="u3a2q1" value="C"> C. Rainy all day</label>
+                <label class="option"><input type="radio" name="u3a2q1" value="D"> D. Very windy and cold</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="B">
+              <div class="question-title">2. What should people in the north take with them?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q2" value="A"> A. Sunglasses</label>
+                <label class="option"><input type="radio" name="u3a2q2" value="B"> B. An umbrella</label>
+                <label class="option"><input type="radio" name="u3a2q2" value="C"> C. A map</label>
+                <label class="option"><input type="radio" name="u3a2q2" value="D"> D. A camera</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="A">
+              <div class="question-title">3. What is the temperature in the north?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q3" value="A"> A. Around 10 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q3" value="B"> B. Around 13 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q3" value="C"> C. Around 15 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q3" value="D"> D. Around 20 degrees</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="C">
+              <div class="question-title">4. What is the weather like in the east?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q4" value="A"> A. Dry all day</label>
+                <label class="option"><input type="radio" name="u3a2q4" value="B"> B. Sunny most of the time</label>
+                <label class="option"><input type="radio" name="u3a2q4" value="C"> C. Rainy all day</label>
+                <label class="option"><input type="radio" name="u3a2q4" value="D"> D. Snowy in the morning</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="D">
+              <div class="question-title">5. What may happen in the east in the afternoon?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q5" value="A"> A. It may become very sunny</label>
+                <label class="option"><input type="radio" name="u3a2q5" value="B"> B. It may become dry</label>
+                <label class="option"><input type="radio" name="u3a2q5" value="C"> C. It may snow</label>
+                <label class="option"><input type="radio" name="u3a2q5" value="D"> D. There may be a thunderstorm</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="A">
+              <div class="question-title">6. What is the weather like in the west and middle of the country?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q6" value="A"> A. Dry, cloudy and quite windy</label>
+                <label class="option"><input type="radio" name="u3a2q6" value="B"> B. Rainy and stormy</label>
+                <label class="option"><input type="radio" name="u3a2q6" value="C"> C. Sunny and hot</label>
+                <label class="option"><input type="radio" name="u3a2q6" value="D"> D. Cold with snow</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="C">
+              <div class="question-title">7. Which part of the country has the best weather today?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q7" value="A"> A. The north</label>
+                <label class="option"><input type="radio" name="u3a2q7" value="B"> B. The east</label>
+                <label class="option"><input type="radio" name="u3a2q7" value="C"> C. The south</label>
+                <label class="option"><input type="radio" name="u3a2q7" value="D"> D. The middle</label>
+              </div>
+            </div>
+
+            <div class="question" data-correct="B">
+              <div class="question-title">8. What is the temperature in the south?</div>
+              <div class="options">
+                <label class="option"><input type="radio" name="u3a2q8" value="A"> A. Around 10 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q8" value="B"> B. Around 15 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q8" value="C"> C. Around 13 degrees</label>
+                <label class="option"><input type="radio" name="u3a2q8" value="D"> D. Around 5 degrees</label>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="check-btn" type="button" onclick="checkTest('audio2')" data-kk="Show result" data-ru="Show result">Show result</button>
+              <div class="result-box" id="result-audio2"></div>
+            </div>
+          </div>
+
+          <div class="answer-panel" id="answers-audio2">
+            <h4 data-kk="Нәтиже және жауаптар" data-ru="Результат и ответы">Нәтиже және жауаптар</h4>
+
+            <div class="answer-item">
+              <strong>1. What is the weather like in the north of the country?</strong>
+              <small data-kk="Елдің солтүстігінде ауа райы қандай?" data-ru="Какая погода на севере страны?">Елдің солтүстігінде ауа райы қандай?</small>
+              <p><b>Correct answer: D</b></p>
+              <p><b>Answer:</b> Very windy and cold.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Өте желді және суық." data-ru="Очень ветрено и холодно.">Өте желді және суық.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Ауа райы хабарында елдің солтүстігінде өте желді әрі суық екені айтылады." data-ru="В прогнозе погоды говорится, что на севере страны очень ветрено и холодно.">Ауа райы хабарында елдің солтүстігінде өте желді әрі суық екені айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>2. What should people in the north take with them?</strong>
+              <small data-kk="Солтүстіктегі адамдар өзімен не алуы керек?" data-ru="Что людям на севере нужно взять с собой?">Солтүстіктегі адамдар өзімен не алуы керек?</small>
+              <p><b>Correct answer: B</b></p>
+              <p><b>Answer:</b> An umbrella.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Қолшатыр." data-ru="Зонт.">Қолшатыр.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Солтүстікте жаңбыр жаууы мүмкін болғандықтан, үйден қолшатырсыз шықпау керектігі айтылады." data-ru="Поскольку на севере возможен дождь, говорится не выходить из дома без зонта.">Солтүстікте жаңбыр жаууы мүмкін болғандықтан, үйден қолшатырсыз шықпау керектігі айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>3. What is the temperature in the north?</strong>
+              <small data-kk="Солтүстіктегі температура қанша?" data-ru="Какая температура на севере?">Солтүстіктегі температура қанша?</small>
+              <p><b>Correct answer: A</b></p>
+              <p><b>Answer:</b> Around 10 degrees.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Шамамен 10 градус." data-ru="Около 10 градусов.">Шамамен 10 градус.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Хабарда солтүстіктегі температура шамамен 10 градус екені айтылады." data-ru="В прогнозе говорится, что температура на севере около 10 градусов.">Хабарда солтүстіктегі температура шамамен 10 градус екені айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>4. What is the weather like in the east?</strong>
+              <small data-kk="Шығыста ауа райы қандай?" data-ru="Какая погода на востоке?">Шығыста ауа райы қандай?</small>
+              <p><b>Correct answer: C</b></p>
+              <p><b>Answer:</b> Rainy all day.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Күні бойы жаңбырлы." data-ru="Дождливо весь день.">Күні бойы жаңбырлы.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Ауа райы хабарында шығыста күні бойы жаңбыр жауатыны айтылады." data-ru="В прогнозе говорится, что на востоке весь день будет дождь.">Ауа райы хабарында шығыста күні бойы жаңбыр жауатыны айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>5. What may happen in the east in the afternoon?</strong>
+              <small data-kk="Түстен кейін шығыста не болуы мүмкін?" data-ru="Что может произойти на востоке после обеда?">Түстен кейін шығыста не болуы мүмкін?</small>
+              <p><b>Correct answer: D</b></p>
+              <p><b>Answer:</b> There may be a thunderstorm.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Найзағай болуы мүмкін." data-ru="Может быть гроза.">Найзағай болуы мүмкін.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Хабарда шығыста түстен кейін найзағай болуы мүмкін екені айтылады." data-ru="В прогнозе говорится, что на востоке после обеда может быть гроза.">Хабарда шығыста түстен кейін найзағай болуы мүмкін екені айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>6. What is the weather like in the west and middle of the country?</strong>
+              <small data-kk="Елдің батысы мен ортасында ауа райы қандай?" data-ru="Какая погода на западе и в центре страны?">Елдің батысы мен ортасында ауа райы қандай?</small>
+              <p><b>Correct answer: A</b></p>
+              <p><b>Answer:</b> Dry, cloudy and quite windy.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Құрғақ, бұлтты және біршама желді." data-ru="Сухо, облачно и довольно ветрено.">Құрғақ, бұлтты және біршама желді.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Батыс пен орталықта жаңбыр жоқ, бірақ бұлтты және желді екені айтылады." data-ru="В прогнозе говорится, что на западе и в центре дождя нет, но облачно и ветрено.">Батыс пен орталықта жаңбыр жоқ, бірақ бұлтты және желді екені айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>7. Which part of the country has the best weather today?</strong>
+              <small data-kk="Бүгін елдің қай бөлігінде ауа райы ең жақсы?" data-ru="В какой части страны сегодня самая лучшая погода?">Бүгін елдің қай бөлігінде ауа райы ең жақсы?</small>
+              <p><b>Correct answer: C</b></p>
+              <p><b>Answer:</b> The south.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Оңтүстікте." data-ru="На юге.">Оңтүстікте.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Хабарда бүгін ең жақсы ауа райы елдің оңтүстігінде екені айтылады." data-ru="В прогнозе говорится, что сегодня самая лучшая погода на юге страны.">Хабарда бүгін ең жақсы ауа райы елдің оңтүстігінде екені айтылады.</span></p>
+            </div>
+
+            <div class="answer-item">
+              <strong>8. What is the temperature in the south?</strong>
+              <small data-kk="Оңтүстіктегі температура қанша?" data-ru="Какая температура на юге?">Оңтүстіктегі температура қанша?</small>
+              <p><b>Correct answer: B</b></p>
+              <p><b>Answer:</b> Around 15 degrees.</p>
+              <p><b data-kk="Жауап аудармасы:" data-ru="Перевод ответа:">Жауап аудармасы:</b> <span data-kk="Шамамен 15 градус." data-ru="Около 15 градусов.">Шамамен 15 градус.</span></p>
+              <p><b data-kk="Неге:" data-ru="Почему:">Неге:</b> <span data-kk="Ауа райы хабарында оңтүстіктегі температура шамамен 15 градус екені айтылады." data-ru="В прогнозе говорится, что температура на юге около 15 градусов.">Ауа райы хабарында оңтүстіктегі температура шамамен 15 градус екені айтылады.</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio2" data-tab-name="transcript">
+          <div class="text-box">News reporter: Here is the weather.
+Weather reporter: Welcome to the weather forecast. Now, let's see what the weather is like today. In the north of the country it's very windy and cold. There is a chance of some rain too, so don't leave home without your umbrella! The temperature is around 10º centigrade. In the east it's rainy all day today, I'm afraid. There may be a thunderstorm in the afternoon. The temperature is a bit higher, at around 13º. In the west and middle of the country the weather is dry, but cloudy. So no rain for you, but it is quite windy and the temperature is just 10º. The south of the country has the best weather today. It's cloudy most of the time but sunny this afternoon. The temperature is around 15º.</div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio2" data-tab-name="translation">
+          <div class="compact-translation">
+            <p><strong>News reporter: Here is the weather.</strong><span data-kk="Жаңалық жүргізуші: Енді ауа райы." data-ru="Ведущий новостей: А теперь погода.">Жаңалық жүргізуші: Енді ауа райы.</span></p>
+            <p><strong>Weather reporter: Welcome to the weather forecast.</strong><span data-kk="Ауа райы жүргізушісі: Ауа райы болжамына қош келдіңіздер." data-ru="Ведущий прогноза погоды: Добро пожаловать на прогноз погоды.">Ауа райы жүргізушісі: Ауа райы болжамына қош келдіңіздер.</span></p>
+            <p><strong>Now, let's see what the weather is like today.</strong><span data-kk="Енді бүгін ауа райы қандай екенін көрейік." data-ru="Теперь посмотрим, какая сегодня погода.">Енді бүгін ауа райы қандай екенін көрейік.</span></p>
+            <p><strong>In the north of the country it's very windy and cold.</strong><span data-kk="Елдің солтүстігінде өте желді және суық." data-ru="На севере страны очень ветрено и холодно.">Елдің солтүстігінде өте желді және суық.</span></p>
+            <p><strong>There is a chance of some rain too, so don't leave home without your umbrella!</strong><span data-kk="Жаңбыр жаууы да мүмкін, сондықтан үйден қолшатырсыз шықпаңыз!" data-ru="Также возможен дождь, поэтому не выходите из дома без зонта!">Жаңбыр жаууы да мүмкін, сондықтан үйден қолшатырсыз шықпаңыз!</span></p>
+            <p><strong>The temperature is around 10º centigrade.</strong><span data-kk="Температура шамамен 10 градус." data-ru="Температура около 10 градусов.">Температура шамамен 10 градус.</span></p>
+            <p><strong>In the east it's rainy all day today.</strong><span data-kk="Шығыста бүгін күні бойы жаңбырлы." data-ru="На востоке сегодня весь день дождливо.">Шығыста бүгін күні бойы жаңбырлы.</span></p>
+            <p><strong>There may be a thunderstorm in the afternoon.</strong><span data-kk="Түстен кейін найзағай болуы мүмкін." data-ru="После обеда может быть гроза.">Түстен кейін найзағай болуы мүмкін.</span></p>
+            <p><strong>The temperature is a bit higher, at around 13º.</strong><span data-kk="Температура сәл жоғарырақ, шамамен 13 градус." data-ru="Температура немного выше, около 13 градусов.">Температура сәл жоғарырақ, шамамен 13 градус.</span></p>
+            <p><strong>In the west and middle of the country the weather is dry, but cloudy.</strong><span data-kk="Елдің батысы мен ортасында ауа райы құрғақ, бірақ бұлтты." data-ru="На западе и в центре страны сухо, но облачно.">Елдің батысы мен ортасында ауа райы құрғақ, бірақ бұлтты.</span></p>
+            <p><strong>So no rain for you, but it is quite windy and the temperature is just 10º.</strong><span data-kk="Жаңбыр болмайды, бірақ біршама желді, температура 10 градус шамасында." data-ru="Дождя не будет, но довольно ветрено, температура около 10 градусов.">Жаңбыр болмайды, бірақ біршама желді, температура 10 градус шамасында.</span></p>
+            <p><strong>The south of the country has the best weather today.</strong><span data-kk="Бүгін елдің оңтүстігінде ауа райы ең жақсы." data-ru="Сегодня на юге страны самая лучшая погода.">Бүгін елдің оңтүстігінде ауа райы ең жақсы.</span></p>
+            <p><strong>It's cloudy most of the time but sunny this afternoon.</strong><span data-kk="Көбіне бұлтты, бірақ түстен кейін күн ашылады." data-ru="Большую часть времени облачно, но после обеда будет солнечно.">Көбіне бұлтты, бірақ түстен кейін күн ашылады.</span></p>
+            <p><strong>The temperature is around 15º.</strong><span data-kk="Температура шамамен 15 градус." data-ru="Температура около 15 градусов.">Температура шамамен 15 градус.</span></p>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="audio2" data-tab-name="vocabulary">
+          <ul class="vocab-list">
+            <li><strong>weather forecast</strong> — <span data-kk="ауа райы болжамы" data-ru="прогноз погоды">ауа райы болжамы</span></li>
+            <li><strong>north</strong> — <span data-kk="солтүстік" data-ru="север">солтүстік</span></li>
+            <li><strong>east</strong> — <span data-kk="шығыс" data-ru="восток">шығыс</span></li>
+            <li><strong>west</strong> — <span data-kk="батыс" data-ru="запад">батыс</span></li>
+            <li><strong>middle</strong> — <span data-kk="орталық" data-ru="центр">орталық</span></li>
+            <li><strong>south</strong> — <span data-kk="оңтүстік" data-ru="юг">оңтүстік</span></li>
+            <li><strong>windy</strong> — <span data-kk="желді" data-ru="ветреный">желді</span></li>
+            <li><strong>umbrella</strong> — <span data-kk="қолшатыр" data-ru="зонт">қолшатыр</span></li>
+            <li><strong>thunderstorm</strong> — <span data-kk="найзағай" data-ru="гроза">найзағай</span></li>
+            <li><strong>cloudy</strong> — <span data-kk="бұлтты" data-ru="облачный">бұлтты</span></li>
+            <li><strong>sunny</strong> — <span data-kk="күн ашық" data-ru="солнечный">күн ашық</span></li>
+            <li><strong>temperature</strong> — <span data-kk="температура" data-ru="температура">температура</span></li>
+          </ul>
+        </div>
+      </article>
+    </section>
+    
